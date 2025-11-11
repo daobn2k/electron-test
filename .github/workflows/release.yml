@@ -1,6 +1,4 @@
 name: Build Electron App (macOS & Windows)
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 on:
   push:
     tags:
@@ -65,4 +63,4 @@ jobs:
             dist/mac/**
             dist/win/**
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
