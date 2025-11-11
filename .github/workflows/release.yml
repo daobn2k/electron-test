@@ -13,7 +13,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
-
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -63,5 +64,3 @@ jobs:
           files: |
             dist/mac/**
             dist/win/**
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
