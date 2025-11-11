@@ -26,16 +26,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build frontend
-        run: npm run build:electron
+      # ✅ Build Electron app (React + Electron)
+      - name: Build Electron (frontend + backend)
+        run: npm run build
 
-      - name: Package Electron App
-        run: |
-          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
-            npx electron-builder --mac --publish never
-          else
-            npx electron-builder --win --publish never
-          fi
+      # ✅ Build for macOS only
+      - name: Package Electron App for macOS
+        if: matrix.os == 'macos-latest'
+        run: npx electron-builder --mac --publish never
+
+      # ✅ Build for Windows only
+      - name: Package Electron App for Windows
+        if: matrix.os == 'windows-latest'
+        run: npx electron-builder --win --publish never
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
