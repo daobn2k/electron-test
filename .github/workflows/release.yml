@@ -1,5 +1,6 @@
 name: Build Electron App (macOS & Windows)
-
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 on:
   push:
     tags:
